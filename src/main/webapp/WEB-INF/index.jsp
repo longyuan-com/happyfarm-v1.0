@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>首页-开心农场-玩转你的土地</title>
+<title>首页-开心农场-玩转你的土地!</title>
 <!-- 引入css代码 -->
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/assets/img/favicon.ico" type="image/x-icon" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/shouye.css">
