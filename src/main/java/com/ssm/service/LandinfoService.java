@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.ssm.entity.HappyFarmCart;
 import com.ssm.entity.HappyFarmLandinfo;
+import com.ssm.entity.PageBean;
 
 public interface LandinfoService {
 	
@@ -46,5 +47,8 @@ public interface LandinfoService {
 	public int getCount();
 	
 	public HappyFarmCart searchLandCartByLandID(List<HappyFarmCart> list,HttpServletRequest request);
-	
+	/**
+	 * 分页展示土地，获取页码
+	 * */
+	public PageBean getPageBean(Integer currentPage);
 }

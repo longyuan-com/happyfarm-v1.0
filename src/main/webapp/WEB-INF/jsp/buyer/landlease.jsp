@@ -77,7 +77,7 @@ function dituweizhi(id) {
 	</div>
 </div>
 <div class="suoxiao">
-<c:forEach var="b" items="${landList}">
+<c:forEach var="b" items="${pageBean.landList}">
 	<div class="kuai" style="width: 1200px">
 	<div id="nb" style="float: left;padding-right: 10px 10px 10px 10px" >
 	<tr><td><a src="" href="${pageContext.request.contextPath}/landinfo?landID=${b.landid}"><img src="${pageContext.request.contextPath}/${b.landimg}" ></a></td></tr><br>
@@ -93,7 +93,38 @@ function dituweizhi(id) {
 	</div>
 </c:forEach>
 </div>
-
+<div align="center"> 
+         <font size="2">第 
+            ${pageBean.currentPage} 页</font> <a src="" href="/happy-farm/getLandList?currentPage=1">首页</a> 
+        <c:choose> 
+            <c:when test="${pageBean.currentPage - 1 > 0}"> 
+                <a href="${pageContext.request.contextPath}/getLandList?currentPage=${pageBean.currentPage - 1}">上一页</a> 
+            </c:when> 
+            <c:when test="${pageBean.currentPage - 1 <= 0}"> 
+                <a href="${pageContext.request.contextPath}/getLandList?currentPage=1">上一页</a> 
+            </c:when> 
+        </c:choose> 
+        <c:choose> 
+            <c:when test="${pageBean.totalPage==0}"> 
+                <a href="${pageContext.request.contextPath}/getLandList?currentPage=${pageBean.currentPage}">下一页</a> 
+            </c:when> 
+            <c:when test="${pageBean.currentPage + 1 < pageBean.totalPage}"> 
+                <a href="${pageContext.request.contextPath}/getLandList?currentPage=${pageBean.currentPage + 1}">下一页</a> 
+            </c:when> 
+            <c:when test="${pageBean.currentPage + 1 >= pageBean.totalPage}"> 
+                <a href="${pageContext.request.contextPath}/getLandList?currentPage=${pageBean.totalPage}">下一页</a> 
+            </c:when> 
+        </c:choose> 
+        <c:choose> 
+            <c:when test="${page.totalPage==0}"> 
+                <a href="${pageContext.request.contextPath}/getLandList?currentPage=${pageBean.currentPage}">尾页</a> 
+            </c:when> 
+            <c:otherwise> 
+                <a href="${pageContext.request.contextPath}/getLandList?currentPage=${pageBean.totalPage}">尾页</a> 
+            </c:otherwise> 
+        </c:choose> 
+        <font size="2">共 ${pageBean.totalPage} 页</font>
+    </div> 
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=j6DtLLmEOQY2VSwKMuENsDV6SnnzcRp5"></script>
 <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/baiduditu.js"></script>

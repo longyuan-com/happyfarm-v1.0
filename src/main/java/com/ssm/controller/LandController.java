@@ -29,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.ssm.entity.HappyFarmLandinfo;
+import com.ssm.entity.PageBean;
 import com.ssm.service.LandinfoService;
 
 
@@ -125,6 +126,20 @@ public class LandController {
 		session.setAttribute("landList", landList);
 		return "admin/happy-farm-2";
 	}
+	
+	//土地分页展示
+		@RequestMapping(value ="/getLandList")
+		public String getLandList(HttpServletRequest request,HttpServletResponse response) throws Exception {
+			//获取当前页码
+			String currentPage = request.getParameter("currentPage");
+			//String currentPage="1";
+			//把页码给业务层，根据页码给我一个pageBean
+			PageBean pageBean = landinfoService.getPageBean(Integer.parseInt(currentPage));
+			//把pageBean写入request域中
+			request.setAttribute("pageBean",pageBean);
+			return "buyer/landlease";
+		}
+	
 	/*
 	 * 点击图片或昵称实现单个土地获取
 	 * */

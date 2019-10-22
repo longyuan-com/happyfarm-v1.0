@@ -10,6 +10,7 @@ import com.ssm.entity.HappyFarmCart;
 import com.ssm.entity.HappyFarmLandinfo;
 import com.ssm.entity.HappyFarmLandinfoExample;
 import com.ssm.entity.HappyFarmLandinfoExample.Criteria;
+import com.ssm.entity.PageBean;
 import com.ssm.mapper.HappyFarmLandinfoMapper;
 import com.ssm.service.LandinfoService;
 
@@ -124,6 +125,36 @@ public class LandinfoServiceServiceImpl implements LandinfoService  {
 		criteria.andStatusEqualTo(1);
 		List<HappyFarmLandinfo> list=happyFarmLandinfoMapper.selectByExample(example);
 		return list;
+	}
+
+	@Override
+	public PageBean getPageBean(Integer currentPage) {
+		try {
+			PageBean pageBean =new PageBean();
+			HappyFarmLandinfo land =new HappyFarmLandinfo();
+			//设置当前页
+			pageBean.setCurrentPage(currentPage);
+			//获取多少条记录，从数据库中查询
+			int count =happyFarmLandinfoMapper.getCount();
+			//把总记录数封装到pageBean中  ,包装类型数据转换必须调用方法类型转换，不能是使用强制转换
+			pageBean.setTotalCount(count);
+			//每页展示多少条数据
+			land.setPageCount(8);
+			Integer pageCount =land.getPageCount();
+			//总页数
+			double totalPage = Math.ceil(1.0*pageBean.getTotalCount()/pageCount);
+			pageBean.setTotalPage((int)totalPage);
+			//设置当前页查询的角标
+			land.setIndex((pageBean.getCurrentPage()-1)*pageCount);
+			Integer index =land.getIndex();
+			List<HappyFarmLandinfo> lands = happyFarmLandinfoMapper.getPageData(index,pageCount);
+			pageBean.setLandList(lands);
+			return pageBean;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}	
 	}
 	
 	

@@ -277,4 +277,13 @@
     update happy_farm_landinfo set status=#{status} where landID = #{landid}
   </update>
   
+  <!-- 查询土地信息表中土地的条数 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		select COUNT(*) from happy_farm_landinfo
+	</select>
+	<!-- 分页查询土地条数 -->
+	<select id="getPageData" resultType="com.ssm.entity.HappyFarmLandinfo">
+		select * from happy_farm_landinfo limit #{index},#{pageCount}
+	</select>
+  
 </mapper>

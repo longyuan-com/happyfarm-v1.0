@@ -16,7 +16,7 @@
 					<li><a href="${pageContext.request.contextPath}/user/happyrules">开心规则</a></li>
 					<li><a href="${pageContext.request.contextPath}/user/coststandard">费用标准</a></li>
 					<li><a href="${pageContext.request.contextPath}/user/farmintroduce">农场介绍</a></li>
-					<li><a href="${pageContext.request.contextPath}/user/landlease">土地租赁</a></li>
+					<li><a href="${pageContext.request.contextPath}/getLandList?currentPage=1"">土地租赁</a></li>
 					<li><a href="${pageContext.request.contextPath}/user/scenicspot">旅游景点</a></li>
 					<li><a href="${pageContext.request.contextPath}/user/supfacilities">配套设施</a></li>
 					<li><a href="${pageContext.request.contextPath}/user/vegeactivity">菜地活动</a></li>
